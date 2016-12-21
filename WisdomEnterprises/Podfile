@@ -1,0 +1,11 @@
+
+# platform :ios, '8.0'
+
+target 'WisdomEnterprises' do
+use_frameworks!
+
+pod 'MJRefresh'
+pod 'MBProgressHUD'
+pod 'SDWebImage'
+pod 'AFNetworking'
+end
