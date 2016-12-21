@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="EsB-NC-nOk" kind="relationship" relationship="rootViewController" id="vfM-2A-itx"/>
+                        <segue destination="lcB-bL-KZJ" kind="relationship" relationship="rootViewController" id="MSV-eO-Wtr"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DvH-kj-x9l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -45,6 +45,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGS-fi-eAb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="254" y="191"/>
+        </scene>
+        <!--Conversation List View Controller-->
+        <scene sceneID="XPs-wl-wDS">
+            <objects>
+                <viewController id="lcB-bL-KZJ" customClass="ConversationListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Iri-ZB-Qfh"/>
+                        <viewControllerLayoutGuide type="bottom" id="CrA-vN-tTU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="S38-CN-NPl" customClass="con">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="EXc-x0-TUy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="opc-4X-gPn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1015" y="250"/>
         </scene>
     </scenes>
 </document>

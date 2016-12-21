@@ -12,9 +12,9 @@
 #import "EaseUI.h"
 #import "EaseManager.h"
 #import "MBProgressHUD.h"
-
+#import "ConversationListViewController.h"
 #import "MessageViewController.h"
-
+#import "UIColor+WXExtension.h"
 @interface LoginViewController ()<UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIView *backgroundView;
 @property (strong, nonatomic) IBOutlet UITextField *account;
@@ -78,7 +78,34 @@
 
     _backgroundView.layer.cornerRadius = 8;
     
- 
+    UIImageView * accountImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"86"]];
+    accountImageView.frame = CGRectMake(0, 0, 80, 40);
+    
+    UIView * line = [[UIView alloc]initWithFrame:CGRectMake(90, 2, 1, 32)];
+    line.backgroundColor = [UIColor colorWithR:234 G:234 B:234 Alpha:1];
+    
+    UIView * aView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
+    
+    [aView addSubview:accountImageView];
+    
+    [aView addSubview:line];
+    
+    _account.leftView = aView;
+    
+    _account.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIImageView * passwordImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mima"]];
+    passwordImageView.frame = CGRectMake(0, 0, 80, 40);
+
+     UIView * pView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
+    
+    
+    [pView addSubview:passwordImageView];
+    
+    _password.leftView = pView;
+    
+    _password.leftViewMode = UITextFieldViewModeAlways;
+    
     _password.secureTextEntry = YES;
   
   
@@ -92,7 +119,7 @@
     
     
     __weak typeof(self) weakself = self;
-    [self showHudInView:self.view hint:NSLocalizedString(@"login.ongoing", @"Is Login...")];
+    [self showHudInView:self.view hint:@"正在登录..."];
     
     [self.easeManager loginWithUsername:@"wxb2016" password:@"1111" completionHandler:^(EMError *error) {
         
@@ -109,8 +136,9 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@([[EMClient sharedClient] isLoggedIn])];
                 
                 
-                MessageViewController * vc = [[MessageViewController alloc]initWithConversationChatter:@"wxb2017" conversationType:EMConversationTypeChat];
-                
+//                MessageViewController * vc = [[MessageViewController alloc]initWithConversationChatter:@"wxb2017" conversationType:EMConversationTypeChat];
+//
+                ConversationListViewController * vc =[[ConversationListViewController alloc]init];
                 [self.navigationController pushViewController:vc animated:YES];
                 
             }];

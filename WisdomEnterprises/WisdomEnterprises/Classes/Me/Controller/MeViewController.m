@@ -8,7 +8,13 @@
 
 #import "MeViewController.h"
 
-@interface MeViewController ()
+@interface MeViewController ()<UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic,strong)UITableView * tableView;
+
+@property (nonatomic,strong)NSArray * showDataSource;
+
+
 
 @end
 
@@ -19,6 +25,15 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)addShowDataSource
+{
+    NSArray * section0 = @[@"头像",@"昵称",@"真实姓名",@"手机号码",@"性别",@"爱好"];
+    NSArray * section1 = @[@"设置密码"];
+    NSArray * section2 = @[@"退出帐号"];
+    
+    self.showDataSource = @[section0,section1,section2];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

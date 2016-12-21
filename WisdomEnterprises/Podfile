@@ -8,4 +8,5 @@ pod 'MJRefresh'
 pod 'MBProgressHUD'
 pod 'SDWebImage'
 pod 'AFNetworking'
+pod 'Masonry'
 end
