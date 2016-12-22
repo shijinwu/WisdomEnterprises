@@ -7,7 +7,7 @@
 //
 
 #import "MessageViewController.h"
-
+#import "UIColor+WXExtension.h"
 @interface MessageViewController ()
 
 @end
@@ -17,8 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-   
+    self.view.backgroundColor = [UIColor colorWithR:230 G:230 B:230 Alpha:1];
+ 
+    self.tableView.backgroundColor =  [UIColor colorWithR:230 G:230 B:230 Alpha:1];
 }
 
 - (void)didReceiveMemoryWarning {

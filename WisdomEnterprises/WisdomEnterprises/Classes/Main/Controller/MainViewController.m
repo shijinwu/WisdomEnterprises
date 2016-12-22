@@ -11,6 +11,9 @@
 
 
 #import "MessageViewController.h"
+#import "ContactViewController.h"
+#import "ServiceViewController.h"
+#import "MeViewController.h"
 #import "UserProfileManager.h"
 #import "ConversationListViewController.h"
 
@@ -30,9 +33,10 @@ static NSString *kGroupName = @"GroupName";
 #endif
 {
     ConversationListViewController *_chatListVC;
-
+    ContactViewController * _contactsVC;
+    MeViewController * _meVC;
     //    __weak CallViewController *_callController;
-    
+    ServiceViewController * _serviceVC;
     UIBarButtonItem *_addFriendItem;
 }
 
@@ -50,7 +54,7 @@ static NSString *kGroupName = @"GroupName";
     }
     //获取未读消息数，此时并没有把self注册为SDK的delegate，读取出的未读数是上次退出程序时的
     //    [self didUnreadMessagesCountChanged];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUntreatedApplyCount) name:@"setupUntreatedApplyCount" object:nil];
+   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUntreatedApplyCount) name:@"setupUntreatedApplyCount" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUnreadMessageCount) name:@"setupUnreadMessageCount" object:nil];
     
     
@@ -59,10 +63,10 @@ static NSString *kGroupName = @"GroupName";
     [self addChildVcWithName:@"Service"];
     [self addChildVcWithName:@"Me"];
     
-     self.selectedIndex = 0;
+    
     
     [self setupUnreadMessageCount];
-    [self setupUntreatedApplyCount];
+   // [self setupUntreatedApplyCount];
     
      [ChatDemoHelper shareHelper].conversationListVC = _chatListVC;
 }
@@ -71,10 +75,63 @@ static NSString *kGroupName = @"GroupName";
     
     UIViewController *  vc =  [[UIStoryboard storyboardWithName:name bundle:nil]instantiateInitialViewController];
     
+    if ([name isEqualToString:@"Message"]) {
+        
+        _chatListVC = vc;
+        
+        vc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"智慧商道" image:nil selectedImage:nil];
+        vc.tabBarItem.tag =0;
+       
+    }
+    else if ([name isEqualToString:@"Contact"]){
+        
+        _contactsVC = vc;
+        vc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"联系人" image:nil selectedImage:nil];
+        vc.tabBarItem.tag =1;
+          }
+    else if ([name isEqualToString:@"Service"]){
+        
+        _serviceVC = vc;
+        vc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"服务" image:nil selectedImage:nil];
+        vc.tabBarItem.tag =2;
+        
+    }
+    else{
+        
+        _meVC = vc;
+        vc.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的" image:nil selectedImage:nil];
+        vc.tabBarItem.tag =3;
+        
+    }
+        
+    
     [self addChildViewController:vc];
     
+    [self tabBar:self.tabBar didSelectItem:_chatListVC.tabBarItem];
+    
 }
-
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+    switch (item.tag) {
+        case 0:
+            self.title = @"智慧商道";
+            break;
+        case 1:
+            self.title = @"联系人";
+            break;
+        case 2:
+            self.title = @"服务";
+            break;
+        case 3:
+            self.title = @"我的";
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

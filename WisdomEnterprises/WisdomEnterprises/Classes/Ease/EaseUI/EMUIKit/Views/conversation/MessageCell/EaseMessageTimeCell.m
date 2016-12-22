@@ -11,7 +11,8 @@
  */
 
 #import "EaseMessageTimeCell.h"
-
+#import "UIColor+WXExtension.h"
+#import <Masonry/Masonry.h>
 CGFloat const EaseMessageTimeCellPadding = 5;
 
 @interface EaseMessageTimeCell()
@@ -26,7 +27,7 @@ CGFloat const EaseMessageTimeCellPadding = 5;
 {
     // UIAppearance Proxy Defaults
     EaseMessageTimeCell *cell = [self appearance];
-    cell.titleLabelColor = [UIColor grayColor];
+    cell.titleLabelColor = [UIColor colorWithR:233 G:233 B:233 Alpha:1];
     cell.titleLabelFont = [UIFont systemFontOfSize:12];
 }
 
@@ -49,7 +50,7 @@ CGFloat const EaseMessageTimeCellPadding = 5;
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _titleLabel.textAlignment = NSTextAlignmentCenter;
-    _titleLabel.backgroundColor = [UIColor clearColor];
+    _titleLabel.backgroundColor = [UIColor colorWithR:189 G:189 B:189 Alpha:1];
     _titleLabel.textColor = _titleLabelColor;
     _titleLabel.font = _titleLabelFont;
     [self.contentView addSubview:_titleLabel];
@@ -64,8 +65,13 @@ CGFloat const EaseMessageTimeCellPadding = 5;
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTop multiplier:1.0 constant:EaseMessageTimeCellPadding]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-EaseMessageTimeCellPadding]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-EaseMessageTimeCellPadding]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:EaseMessageTimeCellPadding]];
+//    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-EaseMessageTimeCellPadding]];
+//    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:EaseMessageTimeCellPadding]];
+    
+     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]];
+    
+  //  [self addConstraint:[NSLayoutConstraint constraintWithItem:self.textLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:-120]];
+
 }
 
 #pragma mark - setter

@@ -10,6 +10,7 @@
 #import "EMSDK.h"
 #import "EaseUI.h"
 #define EaseMobAppKey @"easemob-demo#chatdemoui"
+#import "AppDelegate+EaseMob.h"
 @interface AppDelegate ()
 
 @end
@@ -20,6 +21,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    if (NSClassFromString(@"UNUserNotificationCenter")) {
+        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+    }
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    _connectionState = EMConnectionConnected;
     
     NSString *   apnsCertName = @"chatdemoui_dev";
     //
@@ -29,6 +38,22 @@
     //    options.apnsCertName = apnsCertName;
     //    [[EMClient sharedClient] initializeSDKWithOptions:options];
     
+    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSString *appkey = [ud stringForKey:@"identifier_appkey"];
+    if (!appkey) {
+        appkey = EaseMobAppKey;
+        [ud setObject:appkey forKey:@"identifier_appkey"];
+    }
+    
+    [self easemobApplication:application
+didFinishLaunchingWithOptions:launchOptions
+                      appkey:appkey
+                apnsCertName:apnsCertName
+                 otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
+    
+    [self.window makeKeyAndVisible];
+
     
     [[EaseSDKHelper shareHelper] hyphenateApplication:application
                         didFinishLaunchingWithOptions:launchOptions
@@ -43,29 +68,63 @@
 
     return YES;
 }
-// 注册推送
--(void)registerAPNSLWithApplication:(UIApplication *)application{
-    
-    
-    //iOS8以上 注册APNS
-    if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
-        [application registerForRemoteNotifications];
-        UIUserNotificationType notificationTypes = UIUserNotificationTypeBadge |
-        UIUserNotificationTypeSound |
-        UIUserNotificationTypeAlert;
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
-        [application registerUserNotificationSettings:settings];
+
+//
+//// 注册推送
+//-(void)registerAPNSLWithApplication:(UIApplication *)application{
+//    
+//    
+//    //iOS8以上 注册APNS
+//    if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
+//        [application registerForRemoteNotifications];
+//        UIUserNotificationType notificationTypes = UIUserNotificationTypeBadge |
+//        UIUserNotificationTypeSound |
+//        UIUserNotificationTypeAlert;
+//        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
+//        [application registerUserNotificationSettings:settings];
+//    }
+//    else{
+//        UIRemoteNotificationType notificationTypes = UIRemoteNotificationTypeBadge |
+//        UIRemoteNotificationTypeSound |
+//        UIRemoteNotificationTypeAlert;
+//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:notificationTypes];
+//    }
+//    
+//    
+//    
+//}
+
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    if (_mainController) {
+        [_mainController jumpToChatList];
     }
-    else{
-        UIRemoteNotificationType notificationTypes = UIRemoteNotificationTypeBadge |
-        UIRemoteNotificationTypeSound |
-        UIRemoteNotificationTypeAlert;
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:notificationTypes];
-    }
-    
-    
-    
+    [self easemobApplication:application didReceiveRemoteNotification:userInfo];
 }
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    if (_mainController) {
+        [_mainController didReceiveLocalNotification:notification];
+    }
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
+{
+    NSDictionary *userInfo = notification.request.content.userInfo;
+    [self easemobApplication:[UIApplication sharedApplication] didReceiveRemoteNotification:userInfo];
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler
+{
+    if (_mainController) {
+        [_mainController didReceiveUserNotification:response.notification];
+    }
+    completionHandler();
+}
+
 
 
 //-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{

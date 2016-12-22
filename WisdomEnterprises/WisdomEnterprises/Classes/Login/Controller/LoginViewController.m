@@ -121,7 +121,7 @@
     __weak typeof(self) weakself = self;
     [self showHudInView:self.view hint:@"正在登录..."];
     
-    [self.easeManager loginWithUsername:@"wxb2016" password:@"1111" completionHandler:^(EMError *error) {
+    [self.easeManager loginWithUsername:@"wxb2017" password:@"1111" completionHandler:^(EMError *error) {
         
         if (!error){
             [self hideHud];

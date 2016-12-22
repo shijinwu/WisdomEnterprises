@@ -11,7 +11,7 @@
  */
 
 #import "EaseMessageCell.h"
-
+#import "UIColor+WXExtension.h"
 #import "EaseBubbleView+Text.h"
 #import "EaseBubbleView+Image.h"
 #import "EaseBubbleView+Location.h"
@@ -81,6 +81,8 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
     cell.messageFileNameFont = [UIFont systemFontOfSize:13];
     cell.messageFileSizeColor = [UIColor grayColor];
     cell.messageFileSizeFont = [UIFont systemFontOfSize:11];
+    
+    
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
@@ -120,6 +122,7 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
     _bubbleView = [[EaseBubbleView alloc] initWithMargin:isSender?_rightBubbleMargin:_leftBubbleMargin isSender:isSender];
     _bubbleView.translatesAutoresizingMaskIntoConstraints = NO;
     _bubbleView.backgroundColor = [UIColor clearColor];
+ 
     [self.contentView addSubview:_bubbleView];
     
     _avatarView = [[UIImageView alloc] init];
@@ -152,8 +155,20 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
             {
                 [_bubbleView setupTextBubbleView];
                 
+                _bubbleView.backgroundImageView.image = [UIImage imageNamed:@""];
+                
+                self.messageTextColor = [UIColor whiteColor];
+                
+                
+                 _bubbleView.backgroundImageView.backgroundColor = [UIColor colorWithR:48 G:166 B:34 Alpha:1];
+                if (!isSender) {
+                    _bubbleView.backgroundImageView.backgroundColor = [UIColor colorWithR:251 G:251 B:251 Alpha:1];
+                    self.messageTextColor = [UIColor blackColor];
+                    
+                }
+                
                 _bubbleView.textLabel.font = _messageTextFont;
-                _bubbleView.textLabel.textColor = _messageTextColor;
+               
             }
                 break;
             case EMMessageBodyTypeImage:

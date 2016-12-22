@@ -7,14 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MainViewController.h"
+#import "EaseUI.h"
 @protocol PaymentDelegate;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,EMChatManagerDelegate>
+{
+    EMConnectionState _connectionState;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (weak, nonatomic) UIViewController *homeViewController;
 @property (weak, nonatomic) UIViewController<PaymentDelegate>* toBePaidViewController;
+
+
+@property (strong,nonatomic)MainViewController * mainController;
 
 @end
 

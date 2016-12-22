@@ -45,7 +45,7 @@
     cell.messageNameFont = [UIFont systemFontOfSize:10];
     cell.messageNameHeight = 15;
     if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
-        cell.messageNameIsHidden = NO;
+        cell.messageNameIsHidden = YES;
     }
     
 //    cell.bubbleMargin = UIEdgeInsetsMake(8, 15, 8, 10);

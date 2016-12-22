@@ -11,7 +11,7 @@
  */
 
 #import "ChatDemoHelper.h"
-
+#import "TTGlobalUICommon.h"
 #import "AppDelegate.h"
 //#import "ApplyViewController.h"
 #import "MBProgressHUD.h"
@@ -138,10 +138,10 @@ static ChatDemoHelper *helper = nil;
 #pragma mark - EMClientDelegate
 
 // 网络状态变化回调
-//- (void)didConnectionStateChanged:(EMConnectionState)connectionState
-//{
-//    [self.mainVC networkChanged:connectionState];
-//}
+- (void)didConnectionStateChanged:(EMConnectionState)connectionState
+{
+    [self.mainVC networkChanged:connectionState];
+}
 
 - (void)autoLoginDidCompleteWithError:(EMError *)error
 {
@@ -205,17 +205,18 @@ static ChatDemoHelper *helper = nil;
 
 - (void)didUpdateConversationList:(NSArray *)aConversationList
 {
-//    if (self.mainVC) {
-//        [_mainVC setupUnreadMessageCount];
-//    }
-//    
-//    if (self.conversationListVC) {
-//        [_conversationListVC refreshDataSource];
-//    }
+    if (self.mainVC) {
+        [_mainVC setupUnreadMessageCount];
+    }
+    
+    if (self.conversationListVC) {
+        [_conversationListVC refreshDataSource];
+    }
 }
 
 - (void)didReceiveMessages:(NSArray *)aMessages
 {
+
     BOOL isRefreshCons = YES;
     for(EMMessage *message in aMessages){
         BOOL needShowNotification = (message.chatType != EMChatTypeChat) ? [self _needShowNotification:message.conversationId] : YES;
@@ -262,7 +263,7 @@ static ChatDemoHelper *helper = nil;
             }
             
             if (self.mainVC) {
-               // [_mainVC setupUnreadMessageCount];
+                [_mainVC setupUnreadMessageCount];
             }
             return;
         }
@@ -278,7 +279,7 @@ static ChatDemoHelper *helper = nil;
         }
         
         if (self.mainVC) {
-//[_mainVC setupUnreadMessageCount];
+         [_mainVC setupUnreadMessageCount];
         }
     }
 }
@@ -297,6 +298,7 @@ static ChatDemoHelper *helper = nil;
     
     if (str.length > 0) {
        // TTAlertNoTitle(str);
+        [self.mainVC showHint:str];
     }
     
     NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:_mainVC.navigationController.viewControllers];

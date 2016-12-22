@@ -6,14 +6,26 @@
 //  Copyright © 2016年 mac. All rights reserved.
 //
 
+#import "EditNormalInfoController.h"
+
+
+
+#import "EditGenderController.h"
+
 #import "MeViewController.h"
 
+#import "UIView+Function.h"
+
+#import "InfoManager.h"
+#import <Masonry/Masonry.h>
+#import "UIImageView+EMWebCache.h"
 @interface MeViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong)UITableView * tableView;
 
 @property (nonatomic,strong)NSArray * showDataSource;
 
+@property (nonatomic,strong)InfoManager * infoManager;
 
 
 @end
@@ -37,6 +49,108 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.showDataSource.count;
+    
+}
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return  [self.showDataSource[section] count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell * cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    
+    cell.textLabel.text = self.showDataSource[indexPath.section][indexPath.row];
+    
+    [self setCellInfoWithIndexPath:indexPath cell:cell];
+    
+    
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        
+        return 0;
+    }
+    
+    return 10;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section== 0 && indexPath.row == 0) {
+        
+        return 260;
+    }
+   
+    return 80;
+}
+
+
+-(void)setCellInfoWithIndexPath:(NSIndexPath *)indexPath cell:(UITableViewCell *)cell{
+   
+    if (indexPath.section == 0) {
+        
+        if (indexPath.row == 0) {
+            
+            UIImageView * imageView = [[UIImageView alloc]init];
+            imageView.center = CGPointMake(self.view.width/2,130);
+            imageView.size = CGSizeMake(120, 120);
+            
+            imageView.backgroundColor = [UIColor orangeColor];
+            [cell.contentView addSubview:imageView];
+            
+            imageView.tag = 10001;
+            
+            [imageView sd_setImageWithURL:[NSURL URLWithString:self.infoManager.user.imageUrl]];
+            
+        }else
+        {
+            
+            UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(self.view.right-200,7, 150, 30)];
+            
+            label.textColor = [UIColor blackColor];
+            
+            label.textAlignment = NSTextAlignmentRight;
+            
+            [cell.contentView addSubview:label];
+            
+            switch (indexPath.row) {
+                case 1:
+                    label.text = self.infoManager.user.nickName;
+                    break;
+                case 2:
+                    label.text = self.infoManager.user.name;
+                    break;
+                case 3:
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    label.text = self.infoManager.user.tel;
+                    break;
+                case 4:
+                    label.text = self.infoManager.user.gender;
+                    break;
+                case 5:
+                    label.text = self.infoManager.user.hobby;
+                    break;
+                    
+                default:
+                    break;
+            }
+    }
+    
+    }
+    
 }
 
 /*
