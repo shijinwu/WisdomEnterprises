@@ -10,7 +10,7 @@
 #import "InfoManager.h"
 #import "UILabel+Function.h"
 #import <Masonry/Masonry.h>
-
+#import "UIColor+WXExtension.h"
 @interface EditNormalInfoController ()
 
 @property (nonatomic,strong)UIScrollView * scrollView;
@@ -39,8 +39,19 @@
     
     [self addSubViews];
     
+    self.view.backgroundColor = [UIColor colorWithR:230 G:230 B:230 Alpha:230];
     
 }
+//-(void)viewWillDisappear:(BOOL)animated{
+//    
+//    [super viewWillDisappear: animated];
+//    
+//    self.tabBarController.tabBar.hidden = NO;
+//}
+//-(void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//     self.tabBarController.tabBar.hidden = NO;
+//}
 
 -(void)addSubViews
 {

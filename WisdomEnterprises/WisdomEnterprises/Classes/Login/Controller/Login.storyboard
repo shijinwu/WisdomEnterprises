@@ -29,7 +29,7 @@
                                     <constraint firstAttribute="height" constant="100" id="yx2-1I-kqM"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pT4-Mb-GTZ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="pT4-Mb-GTZ">
                                 <rect key="frame" x="16" y="322" width="343" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -39,7 +39,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q8X-bL-Zba">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Q8X-bL-Zba">
                                 <rect key="frame" x="16" y="362" width="343" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -50,7 +50,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaB-W6-onA">
-                                <rect key="frame" x="50" y="432" width="275" height="35"/>
+                                <rect key="frame" x="20" y="432" width="335" height="35"/>
                                 <color key="backgroundColor" red="0.5490196078431373" green="0.82745098039215681" blue="0.50980392156862742" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="jck-3g-y0L"/>
@@ -94,7 +94,7 @@
                             <constraint firstItem="F8C-Fd-4bz" firstAttribute="leading" secondItem="OpO-fw-eQA" secondAttribute="leading" constant="16" id="PdH-X8-Qij"/>
                             <constraint firstItem="Q8X-bL-Zba" firstAttribute="top" secondItem="pT4-Mb-GTZ" secondAttribute="bottom" id="Q2M-2D-fIu"/>
                             <constraint firstAttribute="trailing" secondItem="Q8X-bL-Zba" secondAttribute="trailing" constant="16" id="Tmw-Cz-09S"/>
-                            <constraint firstItem="GaB-W6-onA" firstAttribute="leading" secondItem="OpO-fw-eQA" secondAttribute="leading" constant="50" id="V1q-HG-lcy"/>
+                            <constraint firstItem="GaB-W6-onA" firstAttribute="leading" secondItem="OpO-fw-eQA" secondAttribute="leading" constant="20" id="V1q-HG-lcy"/>
                             <constraint firstItem="Q8X-bL-Zba" firstAttribute="leading" secondItem="OpO-fw-eQA" secondAttribute="leading" constant="16" id="isO-JX-R0h"/>
                             <constraint firstItem="7as-LT-246" firstAttribute="leading" secondItem="OpO-fw-eQA" secondAttribute="leadingMargin" id="j4g-Yv-mCd"/>
                             <constraint firstItem="GaB-W6-onA" firstAttribute="top" secondItem="7as-LT-246" secondAttribute="bottom" constant="20" id="rnD-mK-8Pq"/>
@@ -102,7 +102,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="7as-LT-246" secondAttribute="trailing" id="uL2-AV-uWU"/>
                             <constraint firstItem="Q8X-bL-Zba" firstAttribute="top" secondItem="3DZ-gX-hHA" secondAttribute="bottom" id="uXU-KK-lw0"/>
                             <constraint firstAttribute="trailing" secondItem="3DZ-gX-hHA" secondAttribute="trailing" constant="16" id="y8P-xL-OYt"/>
-                            <constraint firstAttribute="trailing" secondItem="GaB-W6-onA" secondAttribute="trailing" constant="50" id="yLb-sd-gYX"/>
+                            <constraint firstAttribute="trailing" secondItem="GaB-W6-onA" secondAttribute="trailing" constant="20" id="yLb-sd-gYX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="awx-PI-lMm"/>

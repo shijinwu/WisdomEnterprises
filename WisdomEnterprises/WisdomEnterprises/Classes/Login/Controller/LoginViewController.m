@@ -76,7 +76,6 @@
 -(void)setupUI{
     
 
-    _backgroundView.layer.cornerRadius = 8;
     
     UIImageView * accountImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"86"]];
     accountImageView.frame = CGRectMake(0, 0, 80, 40);
@@ -94,6 +93,8 @@
     
     _account.leftViewMode = UITextFieldViewModeAlways;
     
+    _account.delegate = self;
+    
     UIImageView * passwordImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mima"]];
     passwordImageView.frame = CGRectMake(0, 0, 80, 40);
 
@@ -107,6 +108,8 @@
     _password.leftViewMode = UITextFieldViewModeAlways;
     
     _password.secureTextEntry = YES;
+    
+    _password.delegate = self;
   
   
     _loginButton.layer.cornerRadius = 5;
@@ -204,6 +207,19 @@
 -(void)dealloc{
     
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == _account) {
+        [_account resignFirstResponder];
+        [_password becomeFirstResponder];
+    } else if (textField == _password) {
+        [_password resignFirstResponder];
+        [self longin:nil];
+    }
+    return YES;
 }
 
 @end

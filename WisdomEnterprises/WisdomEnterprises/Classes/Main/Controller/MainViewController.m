@@ -64,6 +64,7 @@ static NSString *kGroupName = @"GroupName";
     [self addChildVcWithName:@"Me"];
     
     
+    [self tabBar:self.tabBar didSelectItem:_chatListVC.tabBarItem];
     
     [self setupUnreadMessageCount];
    // [self setupUntreatedApplyCount];
@@ -107,7 +108,7 @@ static NSString *kGroupName = @"GroupName";
     
     [self addChildViewController:vc];
     
-    [self tabBar:self.tabBar didSelectItem:_chatListVC.tabBarItem];
+   
     
 }
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item

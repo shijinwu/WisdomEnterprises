@@ -9,23 +9,79 @@
 #import "ChangePasswordViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import "UIViewController+HUD.h"
-@interface ChangePasswordViewController ()
+#import "UIColor+WXExtension.h"
+@interface ChangePasswordViewController ()<UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIView *backgroundView;
 @property (strong, nonatomic) IBOutlet UITextField *account;
 @property (strong, nonatomic) IBOutlet UITextField *password;
 @property (strong, nonatomic) IBOutlet UITextField *confirmPassword;
+@property (strong, nonatomic) IBOutlet UIButton *confirmButton;
 
 @end
 
 @implementation ChangePasswordViewController
+- (IBAction)tapConfirmButton:(UIButton *)sender {
+    
+    // 确认
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _backgroundView.layer.cornerRadius = 8;
+    
+    
+    [self setupUI];
     
   [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+-(void)setupUI{
+    
+    
+    UIImageView * accountImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"86"]];
+    accountImageView.frame = CGRectMake(0, 0, 80, 40);
+    
+    UIView * line = [[UIView alloc]initWithFrame:CGRectMake(90, 2, 1, 32)];
+    line.backgroundColor = [UIColor colorWithR:234 G:234 B:234 Alpha:1];
+    
+    UIView * aView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
+    
+    [aView addSubview:accountImageView];
+    
+    [aView addSubview:line];
+    
+    _account.leftView = aView;
+    
+    _account.leftViewMode = UITextFieldViewModeAlways;
+    
+    _account.delegate = self;
+    
+    UIImageView * passwordImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mima"]];
+    passwordImageView.frame = CGRectMake(0, 0, 80, 40);
+    
+    UIView * pView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
+    
+    
+    [pView addSubview:passwordImageView];
+    
+    _password.leftView = pView;
+    
+    _password.leftViewMode = UITextFieldViewModeAlways;
+    
+    
+    _password.delegate = self;
+    
+     UIView * cView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
+  
+    _confirmPassword.leftView = cView;
+    
+    _confirmPassword.leftViewMode = UITextFieldViewModeAlways;
+    
+    
+    _confirmPassword.delegate = self;
+    
+    self.confirmButton.layer.cornerRadius = 5;
 }
 
 -(void)changeFrame:(NSNotification *)notification{
@@ -95,5 +151,23 @@
     
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == _account) {
+        [_account resignFirstResponder];
+        [_password becomeFirstResponder];
+    } else if (textField == _password) {
+        [_password resignFirstResponder];
+        [_confirmPassword becomeFirstResponder];
+    }
+    else if(textField == _confirmPassword){
+        [_confirmPassword resignFirstResponder];
+        [self tapConfirmButton:nil];
+    }
+    return YES;
+}
+
 
 @end

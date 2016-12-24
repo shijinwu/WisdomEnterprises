@@ -251,6 +251,7 @@
 		04998CDB1E0ABD9D00FAF356 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04998CD91E0ABD9D00FAF356 /* Parse.framework */; };
 		04998CDE1E0ACA1700FAF356 /* ChatDemoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04998CDD1E0ACA1700FAF356 /* ChatDemoHelper.m */; };
 		04998CE11E0AD66800FAF356 /* RealtimeSearchUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 04998CE01E0AD66800FAF356 /* RealtimeSearchUtil.m */; };
+		04F8ED781E0CBC0B009955F7 /* UIViewController+Function.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8ED771E0CBC0B009955F7 /* UIViewController+Function.m */; };
 		360E3038D5E3F0303C6E5AAA /* Pods_WisdomEnterprises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59B8311A6DEAEEA4AC681A1 /* Pods_WisdomEnterprises.framework */; };
 /* End PBXBuildFile section */
 
@@ -797,6 +798,8 @@
 		04998CDD1E0ACA1700FAF356 /* ChatDemoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDemoHelper.m; sourceTree = "<group>"; };
 		04998CDF1E0AD66800FAF356 /* RealtimeSearchUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeSearchUtil.h; sourceTree = "<group>"; };
 		04998CE01E0AD66800FAF356 /* RealtimeSearchUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealtimeSearchUtil.m; sourceTree = "<group>"; };
+		04F8ED761E0CBC0B009955F7 /* UIViewController+Function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Function.h"; sourceTree = "<group>"; };
+		04F8ED771E0CBC0B009955F7 /* UIViewController+Function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Function.m"; sourceTree = "<group>"; };
 		C59B8311A6DEAEEA4AC681A1 /* Pods_WisdomEnterprises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WisdomEnterprises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C93AA06D5CDFF8419044682F /* Pods-WisdomEnterprises.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomEnterprises.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WisdomEnterprises/Pods-WisdomEnterprises.debug.xcconfig"; sourceTree = "<group>"; };
 		F082D9D508F7DE741DC0F3F0 /* Pods-WisdomEnterprises.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WisdomEnterprises.release.xcconfig"; path = "Pods/Target Support Files/Pods-WisdomEnterprises/Pods-WisdomEnterprises.release.xcconfig"; sourceTree = "<group>"; };
@@ -1383,6 +1386,8 @@
 		041B9FDE1E07D137009394C0 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				04F8ED761E0CBC0B009955F7 /* UIViewController+Function.h */,
+				04F8ED771E0CBC0B009955F7 /* UIViewController+Function.m */,
 				047298741E0C068200342655 /* UIBarButtonItem+Function.h */,
 				047298751E0C068200342655 /* UIBarButtonItem+Function.m */,
 				047298711E0C051500342655 /* UILabel+Function.h */,
@@ -2511,6 +2516,7 @@
 				0437D3E51E0911B200A9C23C /* MJRefreshBackFooter.m in Sources */,
 				041B9F901E079ECD009394C0 /* TSWashingBasketManager.m in Sources */,
 				0437D41B1E0911B200A9C23C /* PSTGridLayoutRow.m in Sources */,
+				04F8ED781E0CBC0B009955F7 /* UIViewController+Function.m in Sources */,
 				041B9F851E079ECD009394C0 /* SDYCommunityInfo.m in Sources */,
 				0437D3FD1E0911B200A9C23C /* MWTapDetectingView.m in Sources */,
 				0437D3DC1E0911B200A9C23C /* EMCDDeviceManagerBase.m in Sources */,

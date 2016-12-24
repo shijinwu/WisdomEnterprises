@@ -9,6 +9,7 @@
 #import "EditGenderController.h"
 #import "InfoManager.h"
 #import "UILabel+Function.h"
+#import "UIColor+WXExtension.h"
 @interface EditGenderController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,copy)NSString * titleStr;
@@ -31,6 +32,7 @@
     
     self.infoManager = [InfoManager shareManager];
     
+    self.view.backgroundColor = [UIColor colorWithR:230 G:230 B:230 Alpha:230];
     [self addSubViews];
     
     [self addDataSource];
